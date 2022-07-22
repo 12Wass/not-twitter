@@ -1,4 +1,4 @@
-FROM node:current-alpine3.15 AS development
+FROM node:18.6.0 AS development
 
 RUN mkdir -p /svr/app
 WORKDIR /svr/app
