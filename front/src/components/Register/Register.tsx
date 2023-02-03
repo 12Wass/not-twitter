@@ -8,6 +8,7 @@ import Svg from "../Svg/Svg";
 const Register: React.FC = () => {
     // TODO : Form validation before sending.
     const [email, setEmail] = useState<string>("");
+    const [tweetname, setTweetName] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
     const [passwordShown, setPasswordShown] = useState<boolean>(false);
@@ -35,6 +36,17 @@ const Register: React.FC = () => {
                 });
             }
             else if (user) {
+                await supabase
+                    .from('tweetname')
+                    .insert({
+                        user: user.id,
+                        tweetname: tweetname
+                    });
+                await supabase
+                    .from('profile')
+                    .insert({
+                        user: user.id,
+                    });
                 toast.success('Inscription réussie ! Cliquez sur le lien contenu dans l\'email pour activer votre compte.', {
                     id: registerToast,
                 });
@@ -81,6 +93,25 @@ const Register: React.FC = () => {
                                 className="input"
                                 placeholder="jean@valjean.fr"
                                 onChange={(e) => setEmail(e.target.value)}
+                            />
+
+                            <span className="input-icon">
+                                <Svg svg={"email"}/>
+                            </span>
+                        </div>
+                    </div>
+
+                    { /* Tweetname field */}
+                    <div>
+                        <label className="text-sm font-medium">Nom d'utilisateur</label>
+
+                        <div className="relative mt-1">
+                            <input
+                                type="text"
+                                id="tweetname"
+                                className="input"
+                                placeholder="Tweet Name"
+                                onChange={(e) => setTweetName(e.target.value)}
                             />
 
                             <span className="input-icon">

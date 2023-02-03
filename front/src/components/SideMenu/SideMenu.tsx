@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import SideButton from "../Navigation/SideButton";
 import Svg from "../Svg/Svg";
+import {Disconnect} from "../../utils/Disconnect";
 
 const SideMenu: React.FC = () => {
     // Ce composant permettra d'appeler tous les autres composants créant le feed principal.
@@ -20,6 +21,7 @@ const SideMenu: React.FC = () => {
                         <SideButton name={"Security"} svg={"security"} to={"/login"}/>
                         <SideButton name={"Settings"} svg={"settings"} to={"/login"}/>
                         <SideButton name={"Notifications"} svg={"notifications"} to={"/login"}/>
+                        <SideButton name={"Disconnect"} svg={"bookmark"} to={""} onClick={() => { Disconnect() }}/>
                     </div>
                 </div>
                 <div className="flex flex-col justify-end items-center h-full pb-6 px-6 w-full space-y-32">

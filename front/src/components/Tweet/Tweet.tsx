@@ -28,7 +28,7 @@ const Tweet: React.FC = () => {
             <div className="pl-16">
                 <p className="text-base width-auto font-medium text-white flex-shrink">
                     Ça, c'est un hashtag <span className="hashtag">#hashtag</span>
-                    Je me demandes ce que je vais faire ensuite <span className="hashtag">#pasdidée</span>
+                    Je me demande ce que je vais faire ensuite <span className="hashtag">#pasdidée</span>
                 </p>
 
 

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import SideMenu from "../SideMenu/SideMenu";
 import TweetList from "../TweetList/TweetList";
 import {supabase} from "../../utils/SupabaseCreateClient";
+import {useNavigate} from "react-router-dom";
 
 /**
  * Ce composant permet d'appeler tous les autres composants créant le feed principal.
@@ -18,7 +19,19 @@ import {supabase} from "../../utils/SupabaseCreateClient";
 
 const Feed: React.FC = () => {
     // Vérifier que la session existe via supabase.auth.session();
-    console.log(supabase.auth.session());
+    const getSession = supabase.auth.session();
+    const [session, setSession] = useState<Object>(); // Essayer de passer la session en tant que props à l'avenir
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (getSession) {
+            setSession(getSession);
+        } else {
+            navigate('/login');
+        }
+    }, [getSession]);
+
+
    return (
        <div className="bg-gray-900">
            <div className="container mx-auto h-screen w-screen flex">
